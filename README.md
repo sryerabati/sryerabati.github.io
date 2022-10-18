@@ -1,1 +1,0 @@
-# sryerabati.github.io
