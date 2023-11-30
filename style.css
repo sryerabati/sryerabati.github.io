@@ -4,9 +4,13 @@ p{
     font-family: 'Times New Roman', Times, serif;
 }
 body{
-    background-color:aquamarine;
+    background-color:gainsboro;
 }
-
+h2{
+    color:darkslategray;
+    font-size: 30px;
+    font-family:Arial, Helvetica, sans-serif;
+}
 .header {
     background-image: url(https://images.pexels.com/photos/956999/milky-way-starry-sky-night-sky-star-956999.jpeg?cs=srgb&dl=pexels-felix-mittermeier-956999.jpg&fm=jpg);
     border: solid 5px black;
