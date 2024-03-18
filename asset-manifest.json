@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/shreyasyerabati.com/static/css/main.f855e6bc.css",
-    "main.js": "/shreyasyerabati.com/static/js/main.dfdbe376.js",
-    "static/js/453.ed3810f9.chunk.js": "/shreyasyerabati.com/static/js/453.ed3810f9.chunk.js",
-    "static/media/logo.svg": "/shreyasyerabati.com/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
-    "index.html": "/shreyasyerabati.com/index.html",
-    "main.f855e6bc.css.map": "/shreyasyerabati.com/static/css/main.f855e6bc.css.map",
-    "main.dfdbe376.js.map": "/shreyasyerabati.com/static/js/main.dfdbe376.js.map",
-    "453.ed3810f9.chunk.js.map": "/shreyasyerabati.com/static/js/453.ed3810f9.chunk.js.map"
+    "main.css": "/sryerabati.github.io/static/css/main.f855e6bc.css",
+    "main.js": "/sryerabati.github.io/static/js/main.7f3b0b47.js",
+    "static/js/453.ed3810f9.chunk.js": "/sryerabati.github.io/static/js/453.ed3810f9.chunk.js",
+    "static/media/logo.svg": "/sryerabati.github.io/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
+    "index.html": "/sryerabati.github.io/index.html",
+    "main.f855e6bc.css.map": "/sryerabati.github.io/static/css/main.f855e6bc.css.map",
+    "main.7f3b0b47.js.map": "/sryerabati.github.io/static/js/main.7f3b0b47.js.map",
+    "453.ed3810f9.chunk.js.map": "/sryerabati.github.io/static/js/453.ed3810f9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.f855e6bc.css",
-    "static/js/main.dfdbe376.js"
+    "static/js/main.7f3b0b47.js"
   ]
 }
