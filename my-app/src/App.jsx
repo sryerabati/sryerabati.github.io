@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
-import Home from './Home';
-import About from './About';
-import Contact from './Contact';
-import MainHeader from './mainHeader';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Layout from './components/Layout'
+import Home from './pages/Home'
+import About from './pages/About'
+import Projects from './pages/Projects'
+import Contact from './pages/Contact'
+import './styles/custom.css'
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <MainHeader />
-      <div>hihihi</div>
-      <Router>
+    <Router basename={process.env.PUBLIC_URL}>
+      <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
-      </Router>
-    </div>
-  );
+      </Layout>
+    </Router>
+  )
 }
-
-export default App;
