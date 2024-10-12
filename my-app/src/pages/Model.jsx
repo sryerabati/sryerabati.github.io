@@ -1,3 +1,4 @@
+// src/pages/Model.jsx
 import React, { useEffect, useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
@@ -10,7 +11,7 @@ function Model() {
   useEffect(() => {
     const dotShader = {
       uniforms: {
-        dotColor: { value: new THREE.Color('#5ac8fa') } // Define the dot color
+        dotColor: { value: new THREE.Color('#5ac8fa') }, // Define the dot color
       },
       vertexShader: `
         varying vec2 vUv;
@@ -30,7 +31,7 @@ function Model() {
           gl_FragColor = vec4(dotColor, alpha);
         }
       `,
-      transparent: true
+      transparent: true,
     };
 
     scene.traverse((child) => {
