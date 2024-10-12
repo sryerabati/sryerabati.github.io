@@ -29,7 +29,7 @@ export default function Layout({ children }) {
         h="70px"
         overflow="hidden"
       >
-        <Container maxW="container.xl" h="full">
+        <Container maxW="container.xl" h="full" px={{ base: 2, sm: 4 }}>
           <Flex as="nav" h="full" justify="space-between" align="center" wrap="wrap">
             <Flex flexWrap="wrap" align="center">
               {navItems.map((item) => (
@@ -39,7 +39,7 @@ export default function Layout({ children }) {
                   spy={true}
                   smooth={true}
                   offset={-70}
-                  duration={500}
+                  duration={50}
                 >
                   <Button
                     variant="ghost"
@@ -47,6 +47,7 @@ export default function Layout({ children }) {
                     mb={{ base: 2, md: 0 }}
                     onClick={() => {}}
                     zIndex={2}
+                    fontSize={{ base: "sm", sm: "md" }}
                   >
                     {item.name}
                   </Button>
