@@ -1,4 +1,5 @@
-import React, { Suspense, lazy } from 'react';
+import { Suspense, lazy } from 'react';
+import React from 'react';
 import { 
   Box, 
   Container, 
@@ -8,96 +9,139 @@ import {
   Button, 
   Flex, 
   Image, 
-  SimpleGrid, 
   HStack, 
-  Input, 
-  Textarea, 
   Link, 
   Icon,
-  useColorModeValue
+  useColorModeValue,
+  Tag,
+  Wrap,
+  WrapItem,
+  Input,
+  Textarea,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Spinner,
 } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaLinkedin, FaGithub } from 'react-icons/fa';
 import { Canvas } from '@react-three/fiber';
-import { Html } from '@react-three/drei';
-import { useScrollAnimation } from '../hooks/useScrollAnimation';
+import ProjectSlideshow from './ProjectSlideshow';
 
 const Model = lazy(() => import('./Model'));
 
-function Loading() {
-  return (
-    <Html center>
-      <Box as="div" className="spinner" />
-      <style>{`
-        .spinner {
-          border: 8px solid rgba(0, 0, 0, 0.1);
-          border-top: 8px solid #5ac8fa;
-          border-radius: 50%;
-          width: 50px;
-          height: 50px;
-          animation: spin 1s linear infinite;
-        }
-        @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
-        }
-      `}</style>
-    </Html>
-  );
-}
+const ProjectCard = ({ project }) => {
+  const cardBg = useColorModeValue("white", "gray.700");
 
-const ProjectCard = ({ title, description, imageUrl, projectUrl, tags }) => {
   return (
-    <Box borderWidth="1px" borderRadius="lg" overflow="hidden" boxShadow="md">
-      <Image src={imageUrl} alt={title} />
-      <Box p="6">
-        <Heading as="h3" size="md" mb={2}>{title}</Heading>
-        <Text mb={4}>{description}</Text>
-        <HStack spacing={2} mb={4}>
-          {tags.map((tag, index) => (
-            <Box key={index} px={2} py={1} bg="blue.100" color="blue.800" borderRadius="full" fontSize="sm">
-              {tag}
-            </Box>
-          ))}
-        </HStack>
-        <Button as="a" href={projectUrl} target="_blank" colorScheme="blue">
-          View Project
-        </Button>
-      </Box>
+    <Box borderWidth="1px" borderRadius="lg" overflow="hidden" boxShadow="xl" bg={cardBg}>
+      <Flex direction={{ base: 'column', lg: 'row' }} alignItems="center">
+        <Box flex="1" p={6}>
+          <Heading as="h3" size="lg" mb={4}>{project.title}</Heading>
+          <Text fontSize="sm" color="gray.500" mb={2}>{project.purpose}</Text>
+          <VStack align="start" spacing={2} mb={4}>
+            {project.description.split('\n').map((item, index) => (
+              <Text key={index}>
+                {item}
+              </Text>
+            ))}
+          </VStack>
+          <Wrap spacing={2} mb={4}>
+            {project.tags.map((tag, index) => (
+              <WrapItem key={index}>
+                <Tag colorScheme="blue">{tag}</Tag>
+              </WrapItem>
+            ))}
+          </Wrap>
+          <Button as="a" href={project.projectUrl} target="_blank" colorScheme="blue">
+            Visit Project
+          </Button>
+        </Box>
+        <Box flex="1" p={6} display="flex" alignItems="center" justifyContent="center">
+          <ProjectSlideshow project={project} />
+        </Box>
+      </Flex>
     </Box>
   );
 };
 
-export default function Home() {
-  const bgGradient = useColorModeValue("linear(to-r, blue.400, teal.500)", "linear(to-r, blue.600, teal.700)");
+const ExperienceCard = ({ experience }) => {
   const cardBg = useColorModeValue("white", "gray.700");
 
-  const [heroRef, heroControls] = useScrollAnimation();
-  const [aboutRef, aboutControls] = useScrollAnimation();
-  const [projectsRef, projectsControls] = useScrollAnimation();
-  const [contactRef, contactControls] = useScrollAnimation();
+  return (
+    <Box borderWidth="1px" borderRadius="lg" overflow="hidden" boxShadow="md" p={6} bg={cardBg}>
+      <Heading as="h3" size="lg" mb={2}>{experience.title}</Heading>
+      <Text fontWeight="bold" mb={2}>{experience.company}</Text>
+      <Text mb={2}>{experience.duration}</Text>
+      <Text mb={4}>{experience.description}</Text>
+      <Wrap spacing={2}>
+        {experience.skills.map((skill, index) => (
+          <WrapItem key={index}>
+            <Tag colorScheme="green">{skill}</Tag>
+          </WrapItem>
+        ))}
+      </Wrap>
+    </Box>
+  );
+};
+
+const Home = () => {
+  const bgGradient = useColorModeValue("linear(to-r, blue.400, teal.500)", "linear(to-r, blue.600, teal.700)");
+  const cardBg = useColorModeValue("white", "gray.700");
+  const spinnerColor = useColorModeValue("blue.500", "blue.200");
 
   const projects = [
     {
-      title: "Project 1",
-      description: "A brief description of project 1.",
-      imageUrl: "/placeholder.svg?height=200&width=300",
-      projectUrl: "https://project1-url.com",
-      tags: ["React", "Node.js", "MongoDB"]
+      title: "SlideCentral",
+      purpose: "Provides an easier solution for NCHS students and teachers alike to view school activities, and for club sponsors to upload their upcoming activities to garner a larger amount of participation.",
+      description: " • SlideCentral is a full-stack project built with React, Node.js, Express, and a SQL database. Developed by a team of four over seven months, it followed Agile methodologies with four sprints.\n• The backend, using Node.js and Express, focused on secure user authentication and session management. A SQL database handled efficient data exchange between front and back end.\n• Implemented Google OAuth for secure authentication. Users (admins, teachers, students) received tailored, role-specific experiences.\n• SQL queries managed complex relationships between activities, clubs, and users. Real-time updates were reflected on dashboards from user submissions.\n• Dynamic content like the image carousel and custom dashboards was connected via APIs. Content was pulled from the SQL database for seamless display.\n• Agile practices, including sprints, retrospectives, and daily scrums, ensured iterative progress. Trello was used for task management and team coordination.",
+      gallery: [
+        { url: "/images/project1-slidecentral/sc1.png", caption: "Homepage of SlideCentral" },
+        { url: "/images/project1-slidecentral/sc2.png", caption: "User profile page" },
+        { url: "/images/project1-slidecentral/sc3.png", caption: "Data visualization component" },
+        { url: "/images/project1-slidecentral/sc4.png", caption: "Settings panel" }
+      ],
+      projectUrl: "https://github.com/NCHS-Software-Engineering/SlideCentral",
+      tags: ["React", "Node.js", "Express", "SQL", "Agile Development"]
     },
     {
-      title: "Project 2",
-      description: "A brief description of project 2.",
-      imageUrl: "/placeholder.svg?height=200&width=300",
-      projectUrl: "https://project2-url.com",
-      tags: ["Python", "Machine Learning", "Data Visualization"]
+      title: "OnePercentBetter",
+      purpose: "Provides an easier way for users to track their daily habits and improve their productivity by 1% every day. Created as a submission for the 2024 Congressional App Challenge.",
+      description: "•One Percent Better: A React Native mobile app for improving physical and mental wellness, built over six months by a team of four.\n•The app uses Supabase for its backend, a PostgreSQL-based database that securely stores data. Features include meditation tracking (Medito), workout tracking (Strong), a calorie counter, a to-do list, and journaling.\n•As the flagship feature, the Food Nutrition Analyzer, powered by AI, allows users to take a picture of their meal and receive an analysis of its caloric and nutritional content using the Google Gemini API for food recognition and analysis.\n•Solely integrated the Google Gemini API to enable seamless data transfer and performance when identifying food. The AI was fine-tuned to enhance nutritional tracking for a better user experience.\n•Additionally, meditation streaks, workout logs, and journaling were customized to suit individual progress. Real-time updates and user data were efficiently handled via the SQL-based Supabase backend.",
+      gallery: [
+        { url: "/images/project1-slidecentral/sc1.png", caption: "Main dashboard of Project 1" },
+        { url: "/images/project1-slidecentral/sc2.png", caption: "User profile page" },
+        { url: "/images/project1-slidecentral/sc3.png", caption: "Data visualization component" },
+        { url: "/images/project1-slidecentral/sc4.png", caption: "Settings panel" }
+      ],
+      projectUrl: "https://github.com/NCHS-Software-Engineering/SlideCentral",
+      tags: ["React", "Node.js", "Express", "SQL", "Agile Development"]
+    },
+  ];
+
+  const experiences = [
+    {
+      title: "Software Engineer Intern",
+      company: "Tech Innovators Inc.",
+      duration: "June 2023 - August 2023",
+      description: "Developed and maintained web applications using React and Node.js. Collaborated with cross-functional teams to implement new features and improve existing ones.",
+      skills: ["React", "Node.js", "Agile", "Git"]
     },
     {
-      title: "Project 3",
-      description: "A brief description of project 3.",
-      imageUrl: "/placeholder.svg?height=200&width=300",
-      projectUrl: "https://project3-url.com",
-      tags: ["JavaScript", "Three.js", "WebGL"]
+      title: "Research Assistant",
+      company: "University AI Lab",
+      duration: "September 2022 - May 2023",
+      description: "Assisted in developing machine learning models for natural language processing tasks. Conducted literature reviews and contributed to research papers.",
+      skills: ["Python", "TensorFlow", "NLP", "Research"]
+    },
+    {
+      title: "Web Development Freelancer",
+      company: "Self-employed",
+      duration: "January 2022 - Present",
+      description: "Designed and developed responsive websites for small businesses and startups. Managed client relationships and delivered projects on time and within budget.",
+      skills: ["HTML/CSS", "JavaScript", "WordPress", "Client Management"]
     }
   ];
 
@@ -107,13 +151,8 @@ export default function Home() {
       <Box id="home">
         <Container maxW="container.xl" py={20}>
           <motion.div
-            ref={heroRef}
-            initial="hidden"
-            animate={heroControls}
-            variants={{
-              visible: { opacity: 1, y: 0 },
-              hidden: { opacity: 0, y: 50 }
-            }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <Flex direction={{ base: 'column', lg: 'row' }} align="center" justify="space-between">
@@ -132,16 +171,18 @@ export default function Home() {
                 </Button>
               </VStack>
               <Box flex="1" w="full" h="500px" borderRadius="lg" overflow="hidden" boxShadow="2xl">
-                <Canvas
-                  camera={{ position: [0, 0, 10], fov: 50 }}
-                  style={{ width: '100%', height: '100%' }}
-                >
-                  <ambientLight intensity={0.5} />
-                  <pointLight position={[10, 10, 10]} />
-                  <Suspense fallback={<Loading />}>
+                <Suspense fallback={
+                  <Flex w="100%" h="100%" justify="center" align="center" bg={cardBg}>
+                    <Spinner size="xl" color={spinnerColor} thickness="4px" />
+                  </Flex>
+                }>
+                  <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+                    <ambientLight intensity={0.5} />
+                    <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+                    <pointLight position={[-10, -10, -10]} />
                     <Model />
-                  </Suspense>
-                </Canvas>
+                  </Canvas>
+                </Suspense>
               </Box>
             </Flex>
           </motion.div>
@@ -152,13 +193,8 @@ export default function Home() {
       <Box id="about" bg={useColorModeValue("gray.50", "gray.900")} py={20}>
         <Container maxW="container.xl">
           <motion.div
-            ref={aboutRef}
-            initial="hidden"
-            animate={aboutControls}
-            variants={{
-              visible: { opacity: 1, y: 0 },
-              hidden: { opacity: 0, y: 50 }
-            }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <VStack spacing={10} align="start">
@@ -197,28 +233,40 @@ export default function Home() {
         </Container>
       </Box>
 
-      {/* Projects Section */}
+      {/* Projects and Experience Section */}
       <Box id="projects">
         <Container maxW="container.xl" py={20}>
           <motion.div
-            ref={projectsRef}
-            initial="hidden"
-            animate={projectsControls}
-            variants={{
-              visible: { opacity: 1, y: 0 },
-              hidden: { opacity: 0, y: 50 }
-            }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <VStack spacing={10} align="stretch">
               <Heading as="h2" size="2xl" bgGradient={bgGradient} bgClip="text">
-                My Projects
+                Projects & Experience
               </Heading>
-              <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={10}>
-                {projects.map((project, index) => (
-                  <ProjectCard key={index} {...project} />
-                ))}
-              </SimpleGrid>
+              <Tabs isFitted variant="enclosed">
+                <TabList mb="1em">
+                  <Tab>Projects</Tab>
+                  <Tab>Experience</Tab>
+                </TabList>
+                <TabPanels>
+                  <TabPanel>
+                    <VStack spacing={10} align="stretch">
+                      {projects.map((project, index) => (
+                        <ProjectCard key={index} project={project} />
+                      ))}
+                    </VStack>
+                  </TabPanel>
+                  <TabPanel>
+                    <VStack spacing={6} align="stretch">
+                      {experiences.map((experience, index) => (
+                        <ExperienceCard key={index} experience={experience} />
+                      ))}
+                    </VStack>
+                  </TabPanel>
+                </TabPanels>
+              </Tabs>
             </VStack>
           </motion.div>
         </Container>
@@ -228,13 +276,8 @@ export default function Home() {
       <Box id="contact" bg={useColorModeValue("gray.50", "gray.900")} py={20}>
         <Container maxW="container.xl">
           <motion.div
-            ref={contactRef}
-            initial="hidden"
-            animate={contactControls}
-            variants={{
-              visible: { opacity: 1, y: 0 },
-              hidden: { opacity: 0, y: 50 }
-            }}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             <VStack spacing={10} align="stretch">
@@ -256,7 +299,7 @@ export default function Home() {
                   </HStack>
                   <HStack>
                     <Icon as={FaGithub} w={6} h={6} color="blue.500" />
-                    <Link href="https://github.com/yourusername" isExternal>GitHub Profile</Link>
+                    <Link href="https://github.com/yourusername" isExternal>GitHub  Profile</Link>
                   </HStack>
                 </VStack>
                 <VStack
@@ -282,4 +325,6 @@ export default function Home() {
       </Box>
     </Box>
   );
-}
+};
+
+export default Home;

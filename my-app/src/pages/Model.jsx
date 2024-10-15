@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -46,13 +46,19 @@ export default function Model() {
 
     // Center the model
     scene.position.set(0, 0, 0);
+
+    // Fit the model to the scene
+    const box = new THREE.Box3().setFromObject(scene);
+    const size = box.getSize(new THREE.Vector3());
+    const maxDim = Math.max(size.x, size.y, size.z);
+    scene.scale.multiplyScalar(4 / maxDim);
   }, [scene, dotColor]);
 
-  useFrame(() => {
+  useFrame((state, delta) => {
     if (modelRef.current) {
-      modelRef.current.rotation.y += 0.01;
+      modelRef.current.rotation.y += delta * 0.5; // Adjust rotation speed here
     }
   });
 
-  return <primitive ref={modelRef} object={scene} scale={3} />;
+  return <primitive ref={modelRef} object={scene} />;
 }
