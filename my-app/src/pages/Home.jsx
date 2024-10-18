@@ -212,7 +212,7 @@ const Home = () => {
                 </Box>
                 <Box flex="1">
                   <Image
-                    src="/placeholder.svg?height=300&width=300"
+                    src="/images/pfp1.jpg"
                     alt="Shreyas Yerabati"
                     borderRadius="full"
                     boxSize="300px"
