@@ -99,49 +99,42 @@ const Home = () => {
       description: " • SlideCentral is a full-stack project built with React, Node.js, Express, and a SQL database. Developed by a team of four over seven months, it followed Agile methodologies with four sprints.\n• The backend, using Node.js and Express, focused on secure user authentication and session management. A SQL database handled efficient data exchange between front and back end.\n• Implemented Google OAuth for secure authentication. Users (admins, teachers, students) received tailored, role-specific experiences.\n• SQL queries managed complex relationships between activities, clubs, and users. Real-time updates were reflected on dashboards from user submissions.\n• Dynamic content like the image carousel and custom dashboards was connected via APIs. Content was pulled from the SQL database for seamless display.\n• Agile practices, including sprints, retrospectives, and daily scrums, ensured iterative progress. Trello was used for task management and team coordination.",
       gallery: [
         { url: "/images/project1-slidecentral/sc1.png", caption: "Homepage of SlideCentral" },
-        { url: "/images/project1-slidecentral/sc2.png", caption: "User profile page" },
-        { url: "/images/project1-slidecentral/sc3.png", caption: "Data visualization component" },
-        { url: "/images/project1-slidecentral/sc4.png", caption: "Settings panel" }
+        { url: "/images/project1-slidecentral/sc2.png", caption: "Club/Activity Dashboard For Students" },
+        { url: "/images/project1-slidecentral/sc3.png", caption: "Club's Current Slides" },
+        { url: "/images/project1-slidecentral/sc4.png", caption: "All Clubs Combined Slides" }
       ],
       projectUrl: "https://github.com/NCHS-Software-Engineering/SlideCentral",
       tags: ["React", "Node.js", "Express", "SQL", "Agile Development"]
     },
     {
-      title: "OnePercentBetter",
+      title: "OnePercentBetter (In Progress)",
       purpose: "Provides an easier way for users to track their daily habits and improve their productivity by 1% every day. Created as a submission for the 2024 Congressional App Challenge.",
       description: "•One Percent Better: A React Native mobile app for improving physical and mental wellness, built over six months by a team of four.\n•The app uses Supabase for its backend, a PostgreSQL-based database that securely stores data. Features include meditation tracking (Medito), workout tracking (Strong), a calorie counter, a to-do list, and journaling.\n•As the flagship feature, the Food Nutrition Analyzer, powered by AI, allows users to take a picture of their meal and receive an analysis of its caloric and nutritional content using the Google Gemini API for food recognition and analysis.\n•Solely integrated the Google Gemini API to enable seamless data transfer and performance when identifying food. The AI was fine-tuned to enhance nutritional tracking for a better user experience.\n•Additionally, meditation streaks, workout logs, and journaling were customized to suit individual progress. Real-time updates and user data were efficiently handled via the SQL-based Supabase backend.",
       gallery: [
-        { url: "/images/project1-slidecentral/sc1.png", caption: "Main dashboard of Project 1" },
-        { url: "/images/project1-slidecentral/sc2.png", caption: "User profile page" },
-        { url: "/images/project1-slidecentral/sc3.png", caption: "Data visualization component" },
-        { url: "/images/project1-slidecentral/sc4.png", caption: "Settings panel" }
+        { url: "/images/project2-onepercentbetter/sc1.png", caption: "Main Homepage" },
+        { url: "/images/project2-onepercentbetter/sc2.png", caption: "AI Food Analysis" },
+        { url: "/images/project2-onepercentbetter/sc3.png", caption: "Meditation Tracker" },
+        { url: "/images/project2-onepercentbetter/sc4.png", caption: "Cloud stored TodoList" }
       ],
-      projectUrl: "https://github.com/NCHS-Software-Engineering/SlideCentral",
-      tags: ["React", "Node.js", "Express", "SQL", "Agile Development"]
+      projectUrl: "",
+      tags: ["React Native", "Supabase", "PostGRE SQL", "Mobile Development"]
     },
   ];
 
   const experiences = [
     {
-      title: "Software Engineer Intern",
-      company: "Tech Innovators Inc.",
-      duration: "June 2023 - August 2023",
-      description: "Developed and maintained web applications using React and Node.js. Collaborated with cross-functional teams to implement new features and improve existing ones.",
-      skills: ["React", "Node.js", "Agile", "Git"]
+      title: "Software Development Intern (Remote)",
+      company: "EdXeno",
+      duration: "May 2024 - August 2024",
+      description: "•Managed the company website, utilizing the website building platform WebFlow, to maintain the website flow while updating the site to match the brand messaging.\n•Assisted in locating bugs within software applications, and collaborated with senior developers while utilizing tools such as JIRA for project management.\n•Gained valuable experience regarding  startups, and helped to provide a student perspective on the ed-tech platform.",
+      skills: ["WebFlow", "Web Design", "Agile", "Jira"]
     },
     {
-      title: "Research Assistant",
-      company: "University AI Lab",
-      duration: "September 2022 - May 2023",
-      description: "Assisted in developing machine learning models for natural language processing tasks. Conducted literature reviews and contributed to research papers.",
-      skills: ["Python", "TensorFlow", "NLP", "Research"]
-    },
-    {
-      title: "Web Development Freelancer",
-      company: "Self-employed",
-      duration: "January 2022 - Present",
-      description: "Designed and developed responsive websites for small businesses and startups. Managed client relationships and delivered projects on time and within budget.",
-      skills: ["HTML/CSS", "JavaScript", "WordPress", "Client Management"]
+      title: "IT Intern",
+      company: "Naperville Community Unit School District 203",
+      duration: "May 2023 - July 2023",
+      description: "•Managed school district devices at 14 different elementary schools within School District 203.\n•Assisted IT Team in updating, maintaining, and resetting student devices.\n•Applied hardware knowledge to help repair student Chromebooks.\n•Worked on troubleshooting devices including Chromebooks, iPads, and faculty laptops.",
+      skills: ["Hardware Repair", "Troubleshooting", "System Cleaning"]
     }
   ];
 
@@ -204,17 +197,17 @@ const Home = () => {
               <Flex direction={{ base: 'column', md: 'row' }} align="center" justify="space-between">
                 <Box flex="1" mr={{ base: 0, md: 10 }} mb={{ base: 10, md: 0 }}>
                   <Text fontSize="xl" mb={6}>
-                    I'm Shreyas Yerabati, a passionate student diving deep into the world of computer science and web development.
+                    I'm Shreyas Yerabati, a passionate student wanting to experience more about the world of computer science.
                   </Text>
                   <Text fontSize="lg" color="gray.500">
-                    My journey in tech is driven by curiosity and a desire to create meaningful solutions. I thrive on learning new technologies and applying them to solve real-world problems.
+                    My goal in computer science is fostered by curiosity and a desire to create a better life. I love learning new technologies and applying them to better day to day actions.
                   </Text>
                   <Box mt={8} p={6} bg={cardBg} borderRadius="lg" boxShadow="md">
                     <Heading as="h3" size="md" mb={4}>Skills & Interests</Heading>
                     <Text>• Web Development (React, Node.js)</Text>
+                    <Text>• App Development (React Native, Expo)</Text>
                     <Text>• Data Structures & Algorithms</Text>
                     <Text>• Machine Learning & AI</Text>
-                    <Text>• Open Source Contribution</Text>
                   </Box>
                 </Box>
                 <Box flex="1">
@@ -247,8 +240,8 @@ const Home = () => {
               </Heading>
               <Tabs isFitted variant="enclosed">
                 <TabList mb="1em">
-                  <Tab>Projects</Tab>
-                  <Tab>Experience</Tab>
+                  <Tab _selected={{ color: "white", bg: "blue.500" }}>Projects</Tab>
+                  <Tab _selected={{ color: "white", bg: "blue.500" }}>Experience</Tab>
                 </TabList>
                 <TabPanels>
                   <TabPanel>
@@ -288,36 +281,21 @@ const Home = () => {
                 I'd love to hear from you! Feel free to reach out using the information below or send me a message.
               </Text>
               <HStack spacing={10} align="flex-start" flexWrap="wrap">
-                <VStack flex="1" align="stretch" spacing={6} minW="300px">
+                <VStack  flex="1" align="stretch" spacing={6} minW="300px">
                   <HStack>
                     <Icon as={FaEnvelope} w={6} h={6} color="blue.500" />
-                    <Link href="mailto:your.email@example.com">your.email@example.com</Link>
+                    <Link href="mailto:shreyas.yerabati@gmail.com">shreyas.yerabati@gmail.com</Link>
                   </HStack>
                   <HStack>
                     <Icon as={FaLinkedin} w={6} h={6} color="blue.500" />
-                    <Link href="https://www.linkedin.com/in/yourprofile" isExternal>LinkedIn Profile</Link>
+                    <Link href="https://www.linkedin.com/in/shreyas-yerabati-1a74a0294/" isExternal>LinkedIn Profile</Link>
                   </HStack>
                   <HStack>
                     <Icon as={FaGithub} w={6} h={6} color="blue.500" />
-                    <Link href="https://github.com/yourusername" isExternal>GitHub  Profile</Link>
+                    <Link href="https://github.com/sryerabati" isExternal>GitHub  Profile</Link>
                   </HStack>
                 </VStack>
-                <VStack
-                  flex="1"
-                  align="stretch"
-                  spacing={6}
-                  bg={cardBg}
-                  p={8}
-                  borderRadius="lg"
-                  boxShadow="xl"
-                  minW="300px"
-                >
-                  <Heading as="h3" size="lg">Send a Message</Heading>
-                  <Input placeholder="Your Name" />
-                  <Input placeholder="Your Email" type="email" />
-                  <Textarea placeholder="Your Message" rows={4} />
-                  <Button colorScheme="blue" size="lg">Send Message</Button>
-                </VStack>
+                
               </HStack>
             </VStack>
           </motion.div>
