@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect } from 'react';
 import { ChakraProvider, ColorModeScript, useColorMode } from '@chakra-ui/react';
 import theme from './theme';

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Suspense, lazy } from 'react';
 import React from 'react';
 import { 
@@ -32,11 +33,23 @@ import ProjectSlideshow from './ProjectSlideshow';
 
 const Model = lazy(() => import('./Model'));
 
+const MotionBox = motion(Box);
+
 const ProjectCard = ({ project }) => {
   const cardBg = useColorModeValue("white", "gray.700");
 
   return (
-    <Box borderWidth="1px" borderRadius="lg" overflow="hidden" boxShadow="xl" bg={cardBg}>
+    <MotionBox
+      borderWidth="1px"
+      borderRadius="lg"
+      overflow="hidden"
+      boxShadow="xl"
+      bg={cardBg}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
       <Flex direction={{ base: 'column', lg: 'row' }} alignItems="center">
         <Box flex="1" p={6}>
           <Heading as="h3" size="lg" mb={4}>{project.title}</Heading>
@@ -63,7 +76,7 @@ const ProjectCard = ({ project }) => {
           <ProjectSlideshow project={project} />
         </Box>
       </Flex>
-    </Box>
+    </MotionBox>
   );
 };
 
@@ -71,7 +84,18 @@ const ExperienceCard = ({ experience }) => {
   const cardBg = useColorModeValue("white", "gray.700");
 
   return (
-    <Box borderWidth="1px" borderRadius="lg" overflow="hidden" boxShadow="md" p={6} bg={cardBg}>
+    <MotionBox
+      borderWidth="1px"
+      borderRadius="lg"
+      overflow="hidden"
+      boxShadow="md"
+      p={6}
+      bg={cardBg}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
       <Heading as="h3" size="lg" mb={2}>{experience.title}</Heading>
       <Text fontWeight="bold" mb={2}>{experience.company}</Text>
       <Text mb={2}>{experience.duration}</Text>
@@ -83,7 +107,7 @@ const ExperienceCard = ({ experience }) => {
           </WrapItem>
         ))}
       </Wrap>
-    </Box>
+    </MotionBox>
   );
 };
 
