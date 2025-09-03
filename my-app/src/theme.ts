@@ -6,8 +6,23 @@ const config = {
   useSystemColorMode: false,
 };
 
+const fonts = {
+  heading: `'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif`,
+  body: `'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif`,
+};
+
+const styles = {
+  global: {
+    'html, body': {
+      fontSmooth: 'antialiased',
+    },
+  },
+};
+
 const theme = extendTheme({
   config,
+  fonts,
+  styles,
   colors: {
     brand: {
       50: '#e3f8ff',

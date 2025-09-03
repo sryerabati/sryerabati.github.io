@@ -1,11 +1,18 @@
 /* src/styles/custom.css */
 body {
-    transition: background-color 0.6s ease, color 0.6s ease;
-  }
+  font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
 
-  body * {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
-  }
+body * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
 
   :root {
     --color-background: #121212;
@@ -32,57 +39,4 @@ body {
   .model-container {
     width: 100%;
     height: 500px;
-  }
-  
-  .alternating-diagonal-lines {
-    position: relative;
-  }
-  
-  .alternating-diagonal-lines::before,
-  .alternating-diagonal-lines::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    background-image: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 10px,
-      rgba(255, 255, 255, 0.1) 10px,
-      rgba(255, 255, 255, 0.1) 20px
-    );
-  }
-  
-  .alternating-diagonal-lines::after {
-    background-image: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 10px,
-      rgba(0, 0, 0, 0.05) 10px,
-      rgba(0, 0, 0, 0.05) 20px
-    );
-    opacity: 0.5;
-  }
-  
-  body[data-theme="dark"] .alternating-diagonal-lines::before {
-    background-image: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 10px,
-      rgba(255, 255, 255, 0.05) 10px,
-      rgba(255, 255, 255, 0.05) 20px
-    );
-  }
-  
-  body[data-theme="dark"] .alternating-diagonal-lines::after {
-    background-image: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 10px,
-      rgba(0, 0, 0, 0.1) 10px,
-      rgba(0, 0, 0, 0.1) 20px
-    );
   }
