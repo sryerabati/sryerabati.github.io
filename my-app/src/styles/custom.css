@@ -7,11 +7,20 @@
     --color-text: #ffffff;
     --color-text-secondary: #a0a0a0;
     --color-border: #2c2c2c;
-  }
-  
-  html {
-    scroll-behavior: smooth;
-  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+
+body[data-theme="dark"] {
+  background: linear-gradient(to bottom, #1a202c, #2d3748);
+}
   
   .text-gradient {
     background: linear-gradient(45deg, var(--color-primary), var(--color-secondary));
@@ -21,60 +30,7 @@
     color: transparent;
   }
   
-  .model-container {
-    width: 100%;
-    height: 500px;
-  }
-  
-  .alternating-diagonal-lines {
-    position: relative;
-  }
-  
-  .alternating-diagonal-lines::before,
-  .alternating-diagonal-lines::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1;
-    background-image: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 10px,
-      rgba(255, 255, 255, 0.1) 10px,
-      rgba(255, 255, 255, 0.1) 20px
-    );
-  }
-  
-  .alternating-diagonal-lines::after {
-    background-image: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 10px,
-      rgba(0, 0, 0, 0.05) 10px,
-      rgba(0, 0, 0, 0.05) 20px
-    );
-    opacity: 0.5;
-  }
-  
-  body[data-theme="dark"] .alternating-diagonal-lines::before {
-    background-image: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 10px,
-      rgba(255, 255, 255, 0.05) 10px,
-      rgba(255, 255, 255, 0.05) 20px
-    );
-  }
-  
-  body[data-theme="dark"] .alternating-diagonal-lines::after {
-    background-image: repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 10px,
-      rgba(0, 0, 0, 0.1) 10px,
-      rgba(0, 0, 0, 0.1) 20px
-    );
-  }
+.model-container {
+  width: 100%;
+  height: 500px;
+}

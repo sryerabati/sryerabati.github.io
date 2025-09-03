@@ -141,7 +141,7 @@ const Home = () => {
   return (
     <Box>
       {/* Hero Section */}
-      <Box id="home">
+      <Box id="home" bgGradient={useColorModeValue('linear(to-b, blue.50, teal.100)', 'linear(to-b, gray.800, gray.900)')}>
         <Container maxW="container.xl" py={20}>
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -151,10 +151,10 @@ const Home = () => {
             <Flex direction={{ base: 'column', lg: 'row' }} align="center" justify="space-between">
               <VStack spacing={6} align="start" flex="1" mb={{ base: 10, lg: 0 }}>
                 <Heading as="h1" size="3xl" bgGradient={bgGradient} bgClip="text">
-                  Welcome to My Portfolio
+                  Shreyas Yerabati
                 </Heading>
                 <Text fontSize="xl" fontWeight="medium">
-                  Hi, I'm Shreyas Yerabati! I'm a student passionate about computer science and web development.
+                  Full Stack Developer & Student
                 </Text>
                 <Text fontSize="lg" color="gray.500">
                   Explore my projects and discover how I'm shaping the digital world, one line of code at a time.
