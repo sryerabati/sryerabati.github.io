@@ -7,10 +7,9 @@ import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 export default function Layout({ children }) {
   const { colorMode, toggleColorMode } = useColorMode();
-  const bgColor = useColorModeValue('white', '#000');
-  const textColor = useColorModeValue('gray.800', 'white');
-  const headerBgColor = useColorModeValue('rgba(255, 255, 255, 0.8)', 'rgba(0, 0, 0, 0.8)');
-  const borderColor = useColorModeValue('gray.200', 'gray.700');
+  const bgColor = useColorModeValue("white", "gray.800");
+  const textColor = useColorModeValue("gray.800", "white");
+  const headerBgColor = useColorModeValue("blue.50", "gray.900");
 
   const navItems = [
     { name: "Home", to: "home" },
@@ -31,9 +30,8 @@ export default function Layout({ children }) {
         width="full"
         zIndex="banner"
         bg={headerBgColor}
-        backdropFilter="saturate(180%) blur(20px)"
-        borderBottom="1px solid"
-        borderColor={borderColor}
+        className="alternating-diagonal-lines"
+        boxShadow="sm"
         h="70px"
         overflow="hidden"
         initial={{ y: -80 }}
@@ -58,8 +56,7 @@ export default function Layout({ children }) {
                     mb={{ base: 2, md: 0 }}
                     onClick={() => {}}
                     zIndex={2}
-                    fontSize="sm"
-                    fontWeight="500"
+                    fontSize={{ base: "sm", sm: "md" }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >

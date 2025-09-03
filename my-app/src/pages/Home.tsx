@@ -17,6 +17,8 @@ import {
   Tag,
   Wrap,
   WrapItem,
+  Input,
+  Textarea,
   Tabs,
   TabList,
   TabPanels,
@@ -171,63 +173,42 @@ const Home = () => {
     <Box>
       {/* Hero Section */}
       <Box id="home">
-        <Container
-          maxW="container.xl"
-          minH="100vh"
-          py={20}
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-        >
+        <Container maxW="container.xl" py={20}>
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            style={{ width: '100%' }}
           >
-            <VStack spacing={6} align="center" textAlign="center">
-              <Heading
-                as="h1"
-                fontSize={{ base: '4xl', md: '6xl' }}
-                bgGradient={bgGradient}
-                bgClip="text"
-              >
-                Welcome to My Portfolio
-              </Heading>
-              <Text fontSize="xl" fontWeight="medium" maxW="2xl">
-                Hi, I'm Shreyas Yerabati! I'm a student passionate about computer science and web development.
-              </Text>
-              <Text fontSize="lg" color="gray.500" maxW="2xl">
-                Explore my projects and discover how I'm shaping the digital world, one line of code at a time.
-              </Text>
-              <Button as={Link} href="#projects" size="lg" colorScheme="blue" mt={4}>
-                View My Projects
-              </Button>
-            </VStack>
-            <Box
-              w="full"
-              h={{ base: '300px', md: '500px' }}
-              mt={10}
-              borderRadius="lg"
-              overflow="hidden"
-              boxShadow="2xl"
-            >
-              <Suspense
-                fallback={
+            <Flex direction={{ base: 'column', lg: 'row' }} align="center" justify="space-between">
+              <VStack spacing={6} align="start" flex="1" mb={{ base: 10, lg: 0 }}>
+                <Heading as="h1" size="3xl" bgGradient={bgGradient} bgClip="text">
+                  Welcome to My Portfolio
+                </Heading>
+                <Text fontSize="xl" fontWeight="medium">
+                  Hi, I'm Shreyas Yerabati! I'm a student passionate about computer science and web development.
+                </Text>
+                <Text fontSize="lg" color="gray.500">
+                  Explore my projects and discover how I'm shaping the digital world, one line of code at a time.
+                </Text>
+                <Button as={Link} href="#projects" size="lg" colorScheme="blue" mt={4}>
+                  View My Projects
+                </Button>
+              </VStack>
+              <Box flex="1" w="full" h="500px" borderRadius="lg" overflow="hidden" boxShadow="2xl">
+                <Suspense fallback={
                   <Flex w="100%" h="100%" justify="center" align="center" bg={cardBg}>
                     <Spinner size="xl" color={spinnerColor} thickness="4px" />
                   </Flex>
-                }
-              >
-                <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
-                  <ambientLight intensity={0.5} />
-                  <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-                  <pointLight position={[-10, -10, -10]} />
-                  <Model />
-                </Canvas>
-              </Suspense>
-            </Box>
+                }>
+                  <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
+                    <ambientLight intensity={0.5} />
+                    <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+                    <pointLight position={[-10, -10, -10]} />
+                    <Model />
+                  </Canvas>
+                </Suspense>
+              </Box>
+            </Flex>
           </motion.div>
         </Container>
       </Box>

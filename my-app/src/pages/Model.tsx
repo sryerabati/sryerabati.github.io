@@ -3,11 +3,12 @@ import React, { useRef, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useColorModeValue } from '@chakra-ui/react';
+import { useColorMode, useColorModeValue } from '@chakra-ui/react';
 
 export default function Model() {
   const { scene } = useGLTF('/hawk.glb');
   const modelRef = useRef();
+  const { colorMode } = useColorMode();
   
   // Use a lighter blue in dark mode and a darker blue in light mode
   const dotColor = useColorModeValue('#1992d4', '#81defd');
