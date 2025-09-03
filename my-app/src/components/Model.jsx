@@ -9,8 +9,8 @@ export default function Model() {
   const modelRef = useRef();
   const { colorMode } = useColorMode();
   
-  // Use a lighter blue in dark mode and a darker blue in light mode
-  const dotColor = useColorModeValue('#1992d4', '#81defd');
+  // Use a lighter purple in dark mode and a darker purple in light mode
+  const dotColor = useColorModeValue('#9F7AEA', '#D6BCFA');
 
   useEffect(() => {
     const dotShader = {

@@ -28,9 +28,9 @@ import {
 import { motion } from 'framer-motion';
 import { FaEnvelope, FaLinkedin, FaGithub } from 'react-icons/fa';
 import { Canvas } from '@react-three/fiber';
-import ProjectSlideshow from './ProjectSlideshow';
+import ProjectSlideshow from '../components/ProjectSlideshow';
 
-const Model = lazy(() => import('./Model'));
+const Model = lazy(() => import('../components/Model'));
 
 const MotionBox = motion(Box);
 
@@ -63,11 +63,11 @@ const ProjectCard = ({ project }) => {
           <Wrap spacing={2} mb={4}>
             {project.tags.map((tag, index) => (
               <WrapItem key={index}>
-                <Tag colorScheme="blue">{tag}</Tag>
+                <Tag colorScheme="purple">{tag}</Tag>
               </WrapItem>
             ))}
           </Wrap>
-          <Button as="a" href={project.projectUrl} target="_blank" colorScheme="blue">
+          <Button as="a" href={project.projectUrl} target="_blank" colorScheme="purple">
             Visit Project
           </Button>
         </Box>
@@ -111,9 +111,9 @@ const ExperienceCard = ({ experience }) => {
 };
 
 const Home = () => {
-  const bgGradient = useColorModeValue("linear(to-r, blue.400, teal.500)", "linear(to-r, blue.600, teal.700)");
+  const bgGradient = useColorModeValue("linear(to-r, purple.400, purple.600)", "linear(to-r, purple.600, purple.800)");
   const cardBg = useColorModeValue("white", "gray.700");
-  const spinnerColor = useColorModeValue("blue.500", "blue.200");
+  const spinnerColor = useColorModeValue("purple.500", "purple.200");
 
   const projects = [
     {
@@ -189,7 +189,7 @@ const Home = () => {
                 <Text fontSize="lg" color="gray.500">
                   Explore my projects and discover how I'm shaping the digital world, one line of code at a time.
                 </Text>
-                <Button as={Link} href="#projects" size="lg" colorScheme="blue" mt={4}>
+                <Button as={Link} href="#projects" size="lg" colorScheme="purple" mt={4}>
                   View My Projects
                 </Button>
               </VStack>
@@ -270,8 +270,8 @@ const Home = () => {
               </Heading>
               <Tabs isFitted variant="enclosed">
                 <TabList mb="1em">
-                  <Tab _selected={{ color: "white", bg: "blue.500" }}>Projects</Tab>
-                  <Tab _selected={{ color: "white", bg: "blue.500" }}>Experience</Tab>
+                  <Tab _selected={{ color: "white", bg: "purple.500" }}>Projects</Tab>
+                  <Tab _selected={{ color: "white", bg: "purple.500" }}>Experience</Tab>
                 </TabList>
                 <TabPanels>
                   <TabPanel>
@@ -313,15 +313,15 @@ const Home = () => {
               <HStack spacing={10} align="flex-start" flexWrap="wrap">
                 <VStack  flex="1" align="stretch" spacing={6} minW="300px">
                   <HStack>
-                    <Icon as={FaEnvelope} w={6} h={6} color="blue.500" />
+                    <Icon as={FaEnvelope} w={6} h={6} color="purple.500" />
                     <Link href="mailto:shreyas.yerabati@gmail.com">shreyas.yerabati@gmail.com</Link>
                   </HStack>
                   <HStack>
-                    <Icon as={FaLinkedin} w={6} h={6} color="blue.500" />
+                    <Icon as={FaLinkedin} w={6} h={6} color="purple.500" />
                     <Link href="https://www.linkedin.com/in/shreyas-yerabati-1a74a0294/" isExternal>LinkedIn Profile</Link>
                   </HStack>
                   <HStack>
-                    <Icon as={FaGithub} w={6} h={6} color="blue.500" />
+                    <Icon as={FaGithub} w={6} h={6} color="purple.500" />
                     <Link href="https://github.com/sryerabati" isExternal>GitHub  Profile</Link>
                   </HStack>
                 </VStack>

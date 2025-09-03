@@ -8,7 +8,7 @@ export default function Layout({ children }) {
   const { colorMode, toggleColorMode } = useColorMode();
   const bgColor = useColorModeValue("white", "gray.800");
   const textColor = useColorModeValue("gray.800", "white");
-  const headerBgColor = useColorModeValue("blue.50", "gray.900");
+  const headerBgColor = useColorModeValue("purple.50", "gray.900");
 
   const navItems = [
     { name: "Home", to: "home" },
