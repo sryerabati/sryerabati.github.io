@@ -123,17 +123,24 @@ const Home = () => {
 
   const experiences = [
     {
+      title: "Business Development Intern",
+      company: "HomeMax, Bolingbrook IL",
+      duration: "May 2025 - July 2025",
+      description: "Consolidated multiple inventory spreadsheets into a unified Excel tracker, increasing operational efficiency.\nTroubleshot website issues, ensuring product listings remained accurate and the customer experience was seamless.\nConducted cold email outreach to prospective wholesale buyers, expanding the company’s customer base.",
+      skills: ["Marketing", "Excel", "Communication", "Cold Outreach"]
+    },
+    {
       title: "Software Development Intern (Remote)",
-      company: "EdXeno",
+      company: "EdXeno, Seattle WA",
       duration: "May 2024 - August 2024",
-      description: "•Managed the company website, utilizing the website building platform WebFlow, to maintain the website flow while updating the site to match the brand messaging.\n•Assisted in locating bugs within software applications, and collaborated with senior developers while utilizing tools such as JIRA for project management.\n•Gained valuable experience regarding  startups, and helped to provide a student perspective on the ed-tech platform.",
+      description: "Managed and updated the company’s Webflow-based website to ensure brand consistency and smooth user experience.\nCollaborated with senior developers to identify and resolve bugs using JIRA for task management.\nContributed insights from a student perspective to enhance product-market fit.",
       skills: ["WebFlow", "Web Design", "Agile", "Jira"]
     },
     {
       title: "IT Intern",
-      company: "Naperville Community Unit School District 203",
+      company: "Naperville Community Unit School District 203, Naperville IL",
       duration: "May 2023 - July 2023",
-      description: "•Managed school district devices at 14 different elementary schools within School District 203.\n•Assisted IT Team in updating, maintaining, and resetting student devices.\n•Applied hardware knowledge to help repair student Chromebooks.\n•Worked on troubleshooting devices including Chromebooks, iPads, and faculty laptops.",
+      description: "Supported device management for 14 elementary schools, maintaining and resetting Chromebooks, iPads, and laptops.\nDiagnosed and repaired student devices, applying hands-on hardware knowledge.\nWorked directly with the IT team to execute device updates and ensure tech-readiness for classrooms.",
       skills: ["Hardware Repair", "Troubleshooting", "System Cleaning"]
     }
   ];
@@ -212,7 +219,7 @@ const Home = () => {
                 </Box>
                 <Box flex="1">
                   <Image
-                    src="/images/pfp1.JPG"
+                    src="/images/pfp.jpeg"
                     alt="Shreyas Yerabati"
                     borderRadius="full"
                     boxSize="300px"
