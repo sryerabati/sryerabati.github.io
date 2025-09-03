@@ -302,7 +302,7 @@ export default function ProjectSlideshow({ project }) {
               h={3}
               mx={1}
               borderRadius="50%"
-              bg={index === currentImageIndex ? 'blue.500' : 'gray.400'}
+              bg={index === currentImageIndex ? 'purple.500' : 'gray.400'}
               cursor="pointer"
               onClick={() => {
                 setDirection(index > currentImageIndex ? 1 : -1);
