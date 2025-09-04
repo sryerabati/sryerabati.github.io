@@ -8,8 +8,9 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { motion, AnimatePresence, useAnimation } from 'framer-motion';
-import { FaExpand, FaCompress, FaMinus } from 'react-icons/fa';
+import { FaExpand, FaCompress, FaMinus, FaTimes } from 'react-icons/fa';
 import { FiArrowRight, FiArrowLeft } from 'react-icons/fi';
+import { useNavigate } from 'react-router-dom';
 
 export default function ProjectSlideshow({ project }) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -22,6 +23,7 @@ export default function ProjectSlideshow({ project }) {
   const slideshowRef = useRef(null);
   const imageRef = useRef(null);
   const controls = useAnimation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleFullscreenChange = () => {
@@ -71,6 +73,20 @@ export default function ProjectSlideshow({ project }) {
   const prevImage = () => {
     setDirection(-1);
     setCurrentImageIndex((prevIndex) => (prevIndex - 1 + project.gallery.length) % project.gallery.length);
+  };
+
+  const handleClose = async () => {
+    if (isTransitioning) return;
+    setIsTransitioning(true);
+    await controls.start({
+      opacity: 0,
+      scale: 0.95,
+      transition: { duration: 0.2, ease: 'easeInOut' },
+    });
+    if (isFullscreen && document.exitFullscreen) {
+      await document.exitFullscreen();
+    }
+    navigate(-1);
   };
 
   const toggleFullscreen = async () => {
@@ -181,7 +197,39 @@ export default function ProjectSlideshow({ project }) {
         justifyContent="space-between"
       >
         <Flex alignItems="center">
-          <Box as="button" w="12px" h="12px" borderRadius="full" bg="red.500" mr={2} />
+          <Box
+            as="button"
+            w="12px"
+            h="12px"
+            borderRadius="full"
+            bg="red.500"
+            mr={2}
+            position="relative"
+            onClick={handleClose}
+            aria-label="Close slideshow"
+            transition="transform 0.2s ease, background-color 0.2s ease"
+            _hover={{
+              transform: 'scale(1.1)',
+              bg: 'red.400',
+              '& > .close-icon': { opacity: 1 },
+            }}
+            _active={{ transform: 'scale(0.9)' }}
+            _focusVisible={{ boxShadow: '0 0 0 2px var(--chakra-colors-accent-600)' }}
+          >
+            <Icon
+              as={FaTimes}
+              color="red.700"
+              position="absolute"
+              top="50%"
+              left="50%"
+              transform="translate(-50%, -50%)"
+              opacity={0}
+              transition="opacity 0.2s"
+              className="close-icon"
+              pointerEvents="none"
+              fontSize="8px"
+            />
+          </Box>
           <Box
             as="button"
             w="12px"
@@ -191,7 +239,15 @@ export default function ProjectSlideshow({ project }) {
             mr={2}
             position="relative"
             onClick={toggleExpand}
-            _hover={{ '& > .minimize-icon': { opacity: isMinimizable ? 1 : 0 } }}
+            aria-label={isExpanded ? 'Minimize slideshow' : 'Expand slideshow'}
+            transition="transform 0.2s ease, background-color 0.2s ease"
+            _hover={{
+              transform: isMinimizable ? 'scale(1.1)' : undefined,
+              bg: 'yellow.400',
+              '& > .minimize-icon': { opacity: isMinimizable ? 1 : 0 },
+            }}
+            _active={{ transform: isMinimizable ? 'scale(0.9)' : undefined }}
+            _focusVisible={{ boxShadow: '0 0 0 2px var(--chakra-colors-accent-600)' }}
             cursor={isMinimizable ? 'pointer' : 'default'}
           >
             <Icon
@@ -216,7 +272,15 @@ export default function ProjectSlideshow({ project }) {
             bg="green.500"
             position="relative"
             onClick={toggleFullscreen}
-            _hover={{ '& > .fullscreen-icon': { opacity: 1 } }}
+            aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+            transition="transform 0.2s ease, background-color 0.2s ease"
+            _hover={{
+              transform: 'scale(1.1)',
+              bg: 'green.400',
+              '& > .fullscreen-icon': { opacity: 1 },
+            }}
+            _active={{ transform: 'scale(0.9)' }}
+            _focusVisible={{ boxShadow: '0 0 0 2px var(--chakra-colors-accent-600)' }}
           >
             <Icon
               as={isFullscreen ? FaCompress : FaExpand}
@@ -237,10 +301,10 @@ export default function ProjectSlideshow({ project }) {
           {project.title} Gallery
         </Text>
         <Flex>
-          <Button onClick={prevImage} size="xs" variant="ghost" mr={2}>
+          <Button onClick={prevImage} size="xs" variant="ghost" colorScheme="lilac" mr={2}>
             <Icon as={FiArrowLeft} />
           </Button>
-          <Button onClick={nextImage} size="xs" variant="ghost">
+          <Button onClick={nextImage} size="xs" variant="ghost" colorScheme="lilac">
             <Icon as={FiArrowRight} />
           </Button>
         </Flex>
@@ -302,7 +366,7 @@ export default function ProjectSlideshow({ project }) {
               h={3}
               mx={1}
               borderRadius="50%"
-              bg={index === currentImageIndex ? 'blue.500' : 'gray.400'}
+              bg={index === currentImageIndex ? 'lilac.500' : 'gray.400'}
               cursor="pointer"
               onClick={() => {
                 setDirection(index > currentImageIndex ? 1 : -1);
