@@ -94,11 +94,14 @@ export default function ProjectSlideshow({ project }) {
   const handleReopen = async () => {
     if (isTransitioning) return;
     setIsTransitioning(true);
+    setIsMinimized(false);
+    contentControls.set({ y: 0, opacity: 1 });
+    controls.set({ opacity: 0, scale: 0.95 });
     setIsClosed(false);
     await controls.start({
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.3, ease: 'easeOut' },
+      transition: { duration: 0.25, ease: 'easeOut' },
     });
     setIsTransitioning(false);
   };
@@ -138,9 +141,31 @@ export default function ProjectSlideshow({ project }) {
     setIsTransitioning(false);
   };
 
-  const toggleMinimize = () => {
-    if (isTransitioning || !isMinimizable) return;
-    setIsMinimized((prev) => !prev);
+  const contentControls = useAnimation();
+
+  const minimize = async () => {
+    if (isTransitioning || !isMinimizable || isMinimized) return;
+    setIsTransitioning(true);
+    await contentControls.start({
+      y: '-100%',
+      opacity: 0,
+      transition: { duration: 0.25, ease: 'easeInOut' },
+    });
+    setIsMinimized(true);
+    setIsTransitioning(false);
+  };
+
+  const restore = async () => {
+    if (isTransitioning || !isMinimized) return;
+    setIsTransitioning(true);
+    setIsMinimized(false);
+    contentControls.set({ y: '-100%', opacity: 0 });
+    await contentControls.start({
+      y: 0,
+      opacity: 1,
+      transition: { duration: 0.25, ease: 'easeOut' },
+    });
+    setIsTransitioning(false);
   };
 
   const slideVariants = {
@@ -258,17 +283,18 @@ export default function ProjectSlideshow({ project }) {
                 bg="yellow.500"
                 mr={2}
                 position="relative"
-                onClick={toggleMinimize}
-                aria-label={isMinimized ? 'Restore slideshow' : 'Minimize slideshow'}
+                onClick={minimize}
+                aria-label="Minimize slideshow"
                 transition="transform 0.2s ease, background-color 0.2s ease"
                 _hover={{
-                  transform: isMinimizable ? 'scale(1.1)' : undefined,
+                  transform: isMinimizable && !isMinimized ? 'scale(1.1)' : undefined,
                   bg: 'yellow.400',
-                  '& > .minimize-icon': { opacity: isMinimizable ? 1 : 0 },
+                  '& > .minimize-icon': { opacity: isMinimizable && !isMinimized ? 1 : 0 },
                 }}
-                _active={{ transform: isMinimizable ? 'scale(0.9)' : undefined }}
+                _active={{ transform: isMinimizable && !isMinimized ? 'scale(0.9)' : undefined }}
                 _focusVisible={{ boxShadow: '0 0 0 2px var(--chakra-colors-accent-600)' }}
-                cursor={isMinimizable ? 'pointer' : 'default'}
+                cursor={isMinimizable && !isMinimized ? 'pointer' : 'default'}
+                aria-disabled={isMinimized}
               >
                 <Icon
                   as={FaMinus}
@@ -291,8 +317,14 @@ export default function ProjectSlideshow({ project }) {
                 borderRadius="full"
                 bg="green.500"
                 position="relative"
-                onClick={toggleFullscreen}
-                aria-label={isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen'}
+                onClick={isMinimized ? restore : toggleFullscreen}
+                aria-label={
+                  isMinimized
+                    ? 'Restore slideshow'
+                    : isFullscreen
+                    ? 'Exit fullscreen'
+                    : 'Enter fullscreen'
+                }
                 transition="transform 0.2s ease, background-color 0.2s ease"
                 _hover={{
                   transform: 'scale(1.1)',
@@ -303,7 +335,7 @@ export default function ProjectSlideshow({ project }) {
                 _focusVisible={{ boxShadow: '0 0 0 2px var(--chakra-colors-accent-600)' }}
               >
                 <Icon
-                  as={isFullscreen ? FaCompress : FaExpand}
+                  as={isMinimized ? FaExpand : isFullscreen ? FaCompress : FaExpand}
                   color="green.700"
                   position="absolute"
                   top="50%"
@@ -330,84 +362,79 @@ export default function ProjectSlideshow({ project }) {
             </Flex>
           </Flex>
 
-          <AnimatePresence initial={false}>
-            {!isMinimized && (
-              <motion.div
-                key="content"
-                initial={{ y: '-100%', opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: '-100%', opacity: 0 }}
-                transition={{ duration: 0.4, ease: 'easeInOut' }}
-              >
-                <motion.div
+          <motion.div
+            key="content"
+            animate={contentControls}
+            initial={{ y: 0, opacity: 1 }}
+            style={{ display: isMinimized ? 'none' : 'block' }}
+          >
+            <motion.div
+              style={{
+                position: 'relative',
+                width: '100%',
+                height: isFullscreen ? 'calc(100vh - 120px)' : `${containerHeight}px`,
+                backgroundColor: 'gray.800',
+                overflow: 'hidden',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+              animate={{
+                height: isFullscreen ? 'calc(100vh - 120px)' : `${containerHeight}px`,
+              }}
+              transition={{ duration: 0.4, ease: 'easeInOut' }}
+            >
+              <AnimatePresence initial={false} custom={direction}>
+                <motion.img
+                  ref={imageRef}
+                  key={currentImageIndex}
+                  custom={direction}
+                  variants={slideVariants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{
+                    x: { type: "spring", stiffness: 300, damping: 30 },
+                    opacity: { duration: 0.2 }
+                  }}
+                  src={project.gallery[currentImageIndex].url}
+                  alt={project.gallery[currentImageIndex].caption}
                   style={{
-                    position: 'relative',
-                    width: '100%',
-                    height: isFullscreen ? 'calc(100vh - 120px)' : `${containerHeight}px`,
-                    backgroundColor: 'gray.800',
-                    overflow: 'hidden',
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'center',
+                    position: 'absolute',
+                    maxWidth: '100%',
+                    maxHeight: '100%',
+                    objectFit: 'contain',
                   }}
-                  animate={{
-                    height: isFullscreen ? 'calc(100vh - 120px)' : `${containerHeight}px`,
-                  }}
-                  transition={{ duration: 0.4, ease: 'easeInOut' }}
-                >
-                  <AnimatePresence initial={false} custom={direction}>
-                    <motion.img
-                      ref={imageRef}
-                      key={currentImageIndex}
-                      custom={direction}
-                      variants={slideVariants}
-                      initial="enter"
-                      animate="center"
-                      exit="exit"
-                      transition={{
-                        x: { type: "spring", stiffness: 300, damping: 30 },
-                        opacity: { duration: 0.2 }
-                      }}
-                      src={project.gallery[currentImageIndex].url}
-                      alt={project.gallery[currentImageIndex].caption}
-                      style={{
-                        position: 'absolute',
-                        maxWidth: '100%',
-                        maxHeight: '100%',
-                        objectFit: 'contain',
-                      }}
-                    />
-                  </AnimatePresence>
-                </motion.div>
+                />
+              </AnimatePresence>
+            </motion.div>
 
             <Box p={4} bg={captionBg}>
-                  <Text fontSize="sm" textAlign="center">
-                    {project.gallery[currentImageIndex].caption}
-                  </Text>
-                </Box>
+              <Text fontSize="sm" textAlign="center">
+                {project.gallery[currentImageIndex].caption}
+              </Text>
+            </Box>
 
             <Box pb={3} marginTop="-15px" bg={captionBg}>
-                  <Flex justifyContent="center" mt={2}>
-                    {project.gallery.map((_, index) => (
-                      <Box
-                        key={index}
-                        w={3}
-                        h={3}
-                        mx={1}
-                        borderRadius="50%"
-                        bg={index === currentImageIndex ? 'lilac.500' : 'gray.400'}
-                        cursor="pointer"
-                        onClick={() => {
-                          setDirection(index > currentImageIndex ? 1 : -1);
-                          setCurrentImageIndex(index);
-                        }}
-                      />
-                    ))}
-                  </Flex>
-                </Box>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              <Flex justifyContent="center" mt={2}>
+                {project.gallery.map((_, index) => (
+                  <Box
+                    key={index}
+                    w={3}
+                    h={3}
+                    mx={1}
+                    borderRadius="50%"
+                    bg={index === currentImageIndex ? 'lilac.500' : 'gray.400'}
+                    cursor="pointer"
+                    onClick={() => {
+                      setDirection(index > currentImageIndex ? 1 : -1);
+                      setCurrentImageIndex(index);
+                    }}
+                  />
+                ))}
+              </Flex>
+            </Box>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>
