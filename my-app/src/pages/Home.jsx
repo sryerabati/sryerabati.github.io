@@ -35,7 +35,7 @@ const Model = lazy(() => import('./Model'));
 const MotionBox = motion(Box);
 
 const ProjectCard = ({ project }) => {
-  const cardBg = useColorModeValue("white", "gray.700");
+  const cardBg = useColorModeValue('white', 'bg.surface');
 
   return (
     <MotionBox
@@ -80,7 +80,7 @@ const ProjectCard = ({ project }) => {
 };
 
 const ExperienceCard = ({ experience }) => {
-  const cardBg = useColorModeValue("white", "gray.700");
+  const cardBg = useColorModeValue('white', 'bg.surface');
 
   return (
     <MotionBox
@@ -111,9 +111,12 @@ const ExperienceCard = ({ experience }) => {
 };
 
 const Home = () => {
-  const bgGradient = useColorModeValue("linear(to-r, blue.400, teal.500)", "linear(to-r, blue.600, teal.700)");
-  const cardBg = useColorModeValue("white", "gray.700");
-  const spinnerColor = useColorModeValue("blue.500", "blue.200");
+  const bgGradient = useColorModeValue(
+    'linear(to-r, lilac.500, accent.600)',
+    'linear(to-r, lilac.400, accent.500)'
+  );
+  const cardBg = useColorModeValue('white', 'bg.surface');
+  const spinnerColor = useColorModeValue('accent.600', 'lilac.300');
 
   const projects = [
     {
@@ -213,7 +216,7 @@ const Home = () => {
       </Box>
 
       {/* About Section */}
-      <Box id="about" bg={useColorModeValue("gray.50", "gray.900")} py={20}>
+      <Box id="about" bg={useColorModeValue('white', 'bg.surface')} py={20}>
         <Container maxW="container.xl">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -296,7 +299,7 @@ const Home = () => {
       </Box>
 
       {/* Contact Section */}
-      <Box id="contact" bg={useColorModeValue("gray.50", "gray.900")} py={20}>
+      <Box id="contact" bg={useColorModeValue('white', 'bg.surface')} py={20}>
         <Container maxW="container.xl">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
