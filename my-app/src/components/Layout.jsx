@@ -49,6 +49,7 @@ export default function Layout({ children }) {
                 >
                   <MotionButton
                     variant="ghost"
+                    colorScheme="lilac"
                     mr={3}
                     mb={{ base: 2, md: 0 }}
                     onClick={() => {}}
@@ -67,6 +68,7 @@ export default function Layout({ children }) {
               icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               onClick={toggleColorMode}
               variant="ghost"
+              colorScheme="lilac"
               aria-label="Toggle color mode"
               zIndex={2}
               animate={{ rotate: colorMode === 'light' ? 0 : 180 }}

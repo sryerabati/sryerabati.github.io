@@ -63,11 +63,11 @@ const ProjectCard = ({ project }) => {
           <Wrap spacing={2} mb={4}>
             {project.tags.map((tag, index) => (
               <WrapItem key={index}>
-                <Tag colorScheme="blue">{tag}</Tag>
+                <Tag colorScheme="lilac">{tag}</Tag>
               </WrapItem>
             ))}
           </Wrap>
-          <Button as="a" href={project.projectUrl} target="_blank" colorScheme="blue">
+          <Button as="a" href={project.projectUrl} target="_blank" colorScheme="lilac">
             Visit Project
           </Button>
         </Box>
@@ -102,7 +102,7 @@ const ExperienceCard = ({ experience }) => {
       <Wrap spacing={2}>
         {experience.skills.map((skill, index) => (
           <WrapItem key={index}>
-            <Tag colorScheme="green">{skill}</Tag>
+            <Tag colorScheme="lilac">{skill}</Tag>
           </WrapItem>
         ))}
       </Wrap>
@@ -112,11 +112,11 @@ const ExperienceCard = ({ experience }) => {
 
 const Home = () => {
   const bgGradient = useColorModeValue(
-    'linear(to-r, lilac.500, accent.600)',
-    'linear(to-r, lilac.400, accent.500)'
+    'linear(to-r, lilac.500, lilac.600)',
+    'linear(to-r, lilac.400, lilac.500)'
   );
   const cardBg = useColorModeValue('white', 'bg.surface');
-  const spinnerColor = useColorModeValue('accent.600', 'lilac.300');
+  const spinnerColor = useColorModeValue('lilac.600', 'lilac.300');
 
   const projects = [
     {
@@ -192,7 +192,7 @@ const Home = () => {
                 <Text fontSize="lg" color="gray.500">
                   Explore my projects and discover how I'm shaping the digital world, one line of code at a time.
                 </Text>
-                <Button as={Link} href="#projects" size="lg" colorScheme="blue" mt={4}>
+                <Button as={Link} href="#projects" size="lg" colorScheme="lilac" mt={4}>
                   View My Projects
                 </Button>
               </VStack>
@@ -273,8 +273,8 @@ const Home = () => {
               </Heading>
               <Tabs isFitted variant="enclosed">
                 <TabList mb="1em">
-                  <Tab _selected={{ color: "white", bg: "blue.500" }}>Projects</Tab>
-                  <Tab _selected={{ color: "white", bg: "blue.500" }}>Experience</Tab>
+                  <Tab _selected={{ color: "white", bg: "lilac.500" }}>Projects</Tab>
+                  <Tab _selected={{ color: "white", bg: "lilac.500" }}>Experience</Tab>
                 </TabList>
                 <TabPanels>
                   <TabPanel>
@@ -316,15 +316,15 @@ const Home = () => {
               <HStack spacing={10} align="flex-start" flexWrap="wrap">
                 <VStack  flex="1" align="stretch" spacing={6} minW="300px">
                   <HStack>
-                    <Icon as={FaEnvelope} w={6} h={6} color="blue.500" />
+                    <Icon as={FaEnvelope} w={6} h={6} color="lilac.500" />
                     <Link href="mailto:shreyas.yerabati@gmail.com">shreyas.yerabati@gmail.com</Link>
                   </HStack>
                   <HStack>
-                    <Icon as={FaLinkedin} w={6} h={6} color="blue.500" />
+                    <Icon as={FaLinkedin} w={6} h={6} color="lilac.500" />
                     <Link href="https://www.linkedin.com/in/shreyas-yerabati-1a74a0294/" isExternal>LinkedIn Profile</Link>
                   </HStack>
                   <HStack>
-                    <Icon as={FaGithub} w={6} h={6} color="blue.500" />
+                    <Icon as={FaGithub} w={6} h={6} color="lilac.500" />
                     <Link href="https://github.com/sryerabati" isExternal>GitHub  Profile</Link>
                   </HStack>
                 </VStack>

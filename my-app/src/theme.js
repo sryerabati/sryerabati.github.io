@@ -20,10 +20,6 @@ const colors = {
     500: '#B997F5',
     600: '#9C7DD1',
   },
-  accent: {
-    500: '#A78BFA',
-    600: '#8B5CF6',
-  },
 };
 
 const semanticTokens = {
@@ -59,7 +55,7 @@ const styles = {
     },
     '*:focus-visible': {
       outline: '2px solid',
-      outlineColor: 'accent.600',
+      outlineColor: 'lilac.600',
       outlineOffset: '2px',
     },
   },
