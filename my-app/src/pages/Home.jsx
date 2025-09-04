@@ -16,8 +16,6 @@ import {
   Tag,
   Wrap,
   WrapItem,
-  Input,
-  Textarea,
   Tabs,
   TabList,
   TabPanels,
