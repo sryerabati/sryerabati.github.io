@@ -181,13 +181,13 @@ export default function ProjectSlideshow({ project }) {
         justifyContent="space-between"
       >
         <Flex alignItems="center">
-          <Box as="button" w="12px" h="12px" borderRadius="full" bg="red.500" mr={2} />
+          <Box as="button" w="12px" h="12px" borderRadius="full" bg="lilac.500" mr={2} />
           <Box
             as="button"
             w="12px"
             h="12px"
             borderRadius="full"
-            bg="yellow.500"
+            bg="lilac.500"
             mr={2}
             position="relative"
             onClick={toggleExpand}
@@ -196,7 +196,7 @@ export default function ProjectSlideshow({ project }) {
           >
             <Icon
               as={FaMinus}
-              color="yellow.700"
+              color="lilac.600"
               position="absolute"
               top="50%"
               left="50%"
@@ -213,14 +213,14 @@ export default function ProjectSlideshow({ project }) {
             w="12px"
             h="12px"
             borderRadius="full"
-            bg="green.500"
+            bg="lilac.500"
             position="relative"
             onClick={toggleFullscreen}
             _hover={{ '& > .fullscreen-icon': { opacity: 1 } }}
           >
             <Icon
               as={isFullscreen ? FaCompress : FaExpand}
-              color="green.700"
+              color="lilac.600"
               position="absolute"
               top="50%"
               left="50%"
@@ -237,10 +237,10 @@ export default function ProjectSlideshow({ project }) {
           {project.title} Gallery
         </Text>
         <Flex>
-          <Button onClick={prevImage} size="xs" variant="ghost" mr={2}>
+          <Button onClick={prevImage} size="xs" variant="ghost" colorScheme="lilac" mr={2}>
             <Icon as={FiArrowLeft} />
           </Button>
-          <Button onClick={nextImage} size="xs" variant="ghost">
+          <Button onClick={nextImage} size="xs" variant="ghost" colorScheme="lilac">
             <Icon as={FiArrowRight} />
           </Button>
         </Flex>
@@ -302,7 +302,7 @@ export default function ProjectSlideshow({ project }) {
               h={3}
               mx={1}
               borderRadius="50%"
-              bg={index === currentImageIndex ? 'blue.500' : 'gray.400'}
+              bg={index === currentImageIndex ? 'lilac.500' : 'gray.400'}
               cursor="pointer"
               onClick={() => {
                 setDirection(index > currentImageIndex ? 1 : -1);

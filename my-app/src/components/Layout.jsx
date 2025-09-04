@@ -1,14 +1,11 @@
 import React from 'react';
-import { Box, Container, Flex, Button, useColorMode, useColorModeValue, IconButton } from '@chakra-ui/react';
+import { Box, Container, Flex, Button, useColorMode, IconButton } from '@chakra-ui/react';
 import { motion } from 'framer-motion';
 import { Link as ScrollLink } from 'react-scroll';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
 export default function Layout({ children }) {
   const { colorMode, toggleColorMode } = useColorMode();
-  const bgColor = useColorModeValue("white", "gray.800");
-  const textColor = useColorModeValue("gray.800", "white");
-  const headerBgColor = useColorModeValue("blue.50", "gray.900");
 
   const navItems = [
     { name: "Home", to: "home" },
@@ -22,13 +19,14 @@ export default function Layout({ children }) {
   const MotionIconButton = motion(IconButton);
 
   return (
-    <MotionBox bg={bgColor} color={textColor} minH="100vh" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
+    <MotionBox bg="bg.canvas" color="text.primary" minH="100vh" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6 }}>
       <MotionBox
         as="header"
-        position="fixed"
+        position="sticky"
+        top="0"
         width="full"
         zIndex="banner"
-        bg={headerBgColor}
+        bg="bg.surface"
         className="alternating-diagonal-lines"
         boxShadow="sm"
         h="70px"
@@ -51,11 +49,13 @@ export default function Layout({ children }) {
                 >
                   <MotionButton
                     variant="ghost"
+                    colorScheme="lilac"
                     mr={3}
                     mb={{ base: 2, md: 0 }}
                     onClick={() => {}}
                     zIndex={2}
-                    fontSize={{ base: "sm", sm: "md" }}
+                    fontSize={{ base: 'sm', sm: 'md' }}
+                    _hover={{ bg: 'surface.700' }}
                     whileHover={{ scale: 1.1 }}
                     whileTap={{ scale: 0.95 }}
                   >
@@ -68,6 +68,7 @@ export default function Layout({ children }) {
               icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
               onClick={toggleColorMode}
               variant="ghost"
+              colorScheme="lilac"
               aria-label="Toggle color mode"
               zIndex={2}
               animate={{ rotate: colorMode === 'light' ? 0 : 180 }}
