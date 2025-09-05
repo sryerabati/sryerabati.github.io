@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { ChakraProvider, ColorModeScript, useColorMode } from '@chakra-ui/react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import theme from './theme';
 import Layout from './components/Layout';
 import Home from './pages/Home';
@@ -20,9 +21,14 @@ function App() {
     <ChakraProvider theme={theme}>
       <ColorModeScript initialColorMode={theme.config.initialColorMode} />
       <ColorModeManager />
-      <Layout>
-        <Home />
-      </Layout>
+      <Router>
+        <Layout>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </Layout>
+      </Router>
     </ChakraProvider>
   );
 }
