@@ -190,7 +190,15 @@ const Home = () => {
                 <Text fontSize="lg" color="gray.500">
                   Explore my projects and discover how I'm shaping the digital world, one line of code at a time.
                 </Text>
-                <Button as={Link} href="#projects" size="lg" colorScheme="lilac" mt={4}>
+                <Button
+                  as={Link}
+                  href="#projects"
+                  size="lg"
+                  bg="lilac.500"
+                  color="bg.900"
+                  mt={4}
+                  _hover={{ bg: 'lilac.600' }}
+                >
                   View My Projects
                 </Button>
               </VStack>
