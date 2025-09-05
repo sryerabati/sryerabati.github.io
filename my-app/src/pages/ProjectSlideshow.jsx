@@ -23,9 +23,10 @@ export default function ProjectSlideshow({ project }) {
   const slideshowRef = useRef(null);
   const imageRef = useRef(null);
   const controls = useAnimation();
-  const surfaceBg = useColorModeValue('gray.100', 'gray.700');
-  const barBg = useColorModeValue('gray.200', 'gray.600');
-  const captionBg = useColorModeValue('white', 'gray.800');
+  // Use theme tokens for backgrounds to stay consistent with the lilac palette
+  const surfaceBg = useColorModeValue('white', 'surface.800');
+  const barBg = useColorModeValue('gray.100', 'surface.700');
+  const captionBg = useColorModeValue('white', 'surface.700');
 
   useEffect(() => {
     const handleFullscreenChange = () => {

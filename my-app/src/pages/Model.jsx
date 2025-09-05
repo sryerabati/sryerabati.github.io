@@ -2,13 +2,14 @@ import React, { useRef, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { useColorModeValue } from '@chakra-ui/react';
+import { useColorMode } from '@chakra-ui/react';
 
 export default function Model() {
   const { scene } = useGLTF('/hawk.glb');
   const modelRef = useRef();
-  // Use a lighter purple in dark mode and a darker purple in light mode
-  const dotColor = useColorModeValue('#9C7DD1', '#B997F5');
+  // Determine dot color based on the current theme mode
+  const { colorMode } = useColorMode();
+  const dotColor = colorMode === 'light' ? '#9C7DD1' : '#B997F5';
 
   useEffect(() => {
     const dotShader = {
