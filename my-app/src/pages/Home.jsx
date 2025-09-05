@@ -199,6 +199,7 @@ const Home = () => {
                   mt={4}
                   _hover={{ bg: 'lilac.600' }}
                 >
+
                   View My Projects
                 </Button>
               </VStack>

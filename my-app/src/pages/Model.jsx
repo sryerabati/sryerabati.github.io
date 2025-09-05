@@ -11,6 +11,7 @@ export default function Model() {
   const { colorMode } = useColorMode();
   const dotColor = colorMode === 'light' ? '#9C7DD1' : '#B997F5';
 
+
   useEffect(() => {
     const dotShader = {
       uniforms: {

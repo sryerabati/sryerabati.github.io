@@ -363,6 +363,7 @@ export default function ProjectSlideshow({ project }) {
             </Flex>
           </Flex>
 
+
           <motion.div
             key="content"
             animate={contentControls}
@@ -415,7 +416,6 @@ export default function ProjectSlideshow({ project }) {
                 {project.gallery[currentImageIndex].caption}
               </Text>
             </Box>
-
             <Box pb={3} marginTop="-15px" bg={captionBg}>
               <Flex justifyContent="center" mt={2}>
                 {project.gallery.map((_, index) => (
@@ -439,5 +439,6 @@ export default function ProjectSlideshow({ project }) {
         </motion.div>
       )}
     </AnimatePresence>
+
   );
 }
